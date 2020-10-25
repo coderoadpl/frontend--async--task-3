@@ -1,20 +1,18 @@
-// ReferenceError: add is not defined
-// console.log(add)
+const loadScript = (src, callback) => {
 
-const script = document.createElement('script')
-script.src = './add.js'
+    const script = document.createElement('script')
+    script.src = src
+    
+    script.addEventListener(
+        'load',
+        callback
+    )
 
-document.body.appendChild(script)
+    document.body.appendChild(script)
 
-// ReferenceError: add is not defined
-// console.log(add)
+}
 
-script.addEventListener(
-    'load',
-    () => {
-        console.log(add)
-        console.log(add(1, 2))
-    }
-)
-
-console.log('I will be first!')
+loadScript('./add.js', () => {
+    console.log(add)
+    console.log(add(1, 2))
+})
